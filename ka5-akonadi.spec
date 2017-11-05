@@ -30,16 +30,16 @@ search, and a library (cache) for easy access and notification of data
 changes.
 
 %package devel
-Summary:	Header files for %{kpname} development
-Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kpname}
+Summary:	Header files for %{kaname} development
+Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kaname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Header files for %{kpname} development.
+Header files for %{kaname} development.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe dla programistów używających %{kpname}.
+Pliki nagłówkowe dla programistów używających %{kaname}.
 
 %prep
 %setup -q -n %{kaname}-%{version}
@@ -57,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang akonadi --all-name --with-kde
+%find_lang %{kaname} --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f akonadi.lang
+%files -f %{kaname}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/akonadi_agent_launcher
 %attr(755,root,root) %{_bindir}/akonadi_agent_server
