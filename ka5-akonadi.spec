@@ -4,7 +4,7 @@
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
 Version:	17.08.2
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
@@ -56,6 +56,7 @@ cd build
 rm -rf $RPM_BUILD_ROOT
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_includedir}/KF5/Akonadi
 
 %find_lang %{kaname} --all-name --with-kde
 
@@ -121,6 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/KF5/akonadi
+%{_includedir}/KF5/Akonadi
 %{_includedir}/KF5/AkonadiAgentBase
 %{_includedir}/KF5/AkonadiCore
 %{_includedir}/KF5/AkonadiWidgets
