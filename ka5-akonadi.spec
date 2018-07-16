@@ -1,14 +1,14 @@
-%define		kdeappsver	18.04.0
+%define		kdeappsver	18.04.3
 %define		qtver		5.3.2
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	18.04.0
+Version:	18.04.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	9bfb91ddf275433e8e7524ac73bee77d
+# Source0-md5:	8feace33af1c01b41e5e760c832e943f
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -100,7 +100,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libKF5AkonadiXml.so.*.*.*
 %dir %{_libdir}/qt5/plugins/akonadi
 %{_libdir}/qt5/plugins/akonadi/akonadi_test_searchplugin.so
-%{_libdir}/qt5/plugins/designer/akonadi5widgets.so
 %dir %{_datadir}/akonadi
 %dir %{_datadir}/akonadi/agents
 %{_datadir}/akonadi/agents/knutresource.desktop
