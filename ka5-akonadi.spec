@@ -1,18 +1,42 @@
-%define		kdeappsver	18.04.3
-%define		qtver		5.3.2
+%define		kdeappsver	18.12.0
+%define		kfver		5.53.0
+%define		qtver		5.9.0
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	18.04.3
+Version:	18.12.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	8feace33af1c01b41e5e760c832e943f
+# Source0-md5:	c86117880330091be1b9e2e27994144c
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5DBus-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel >= 5.11.1
+BuildRequires:	Qt5Network-devel >= %{qtver}
+BuildRequires:	Qt5Sql-devel >= %{qtver}
+BuildRequires:	Qt5Test-devel >= %{qtver}
+BuildRequires:	Qt5Widgets-devel >= %{qtver}
+BuildRequires:	Qt5Xml-devel >= %{qtver}
+BuildRequires:	boost-devel >= 1.34.0
 BuildRequires:	cmake >= 2.8.12
-BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
+BuildRequires:	gettext-devel
+BuildRequires:	kf5-extra-cmake-modules >= %{kfver}
+BuildRequires:	kf5-kcompletion-devel >= %{kfver}
+BuildRequires:	kf5-kconfig-devel >= %{kfver}
+BuildRequires:	kf5-kconfigwidgets-devel >= %{kfver}
+BuildRequires:	kf5-kcoreaddons-devel >= %{kfver}
+BuildRequires:	kf5-kcrash-devel >= %{kfver}
+BuildRequires:	kf5-kdbusaddons-devel >= %{kfver}
+BuildRequires:	kf5-ki18n-devel >= %{kfver}
+BuildRequires:	kf5-kiconthemes-devel >= %{kfver}
+BuildRequires:	kf5-kio-devel >= %{kfver}
+BuildRequires:	kf5-kitemmodels-devel >= %{kfver}
+BuildRequires:	kf5-kitemviews-devel >= %{kfver}
+BuildRequires:	kf5-kwidgetsaddons-devel >= %{kfver}
+BuildRequires:	kf5-kwindowsystem-devel >= %{kfver}
+BuildRequires:	kf5-kxmlgui-devel >= %{kfver}
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
@@ -99,7 +123,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libKF5AkonadiXml.so.5
 %attr(755,root,root) %{_libdir}/libKF5AkonadiXml.so.*.*.*
 %dir %{_libdir}/qt5/plugins/akonadi
-%{_libdir}/qt5/plugins/akonadi/akonadi_test_searchplugin.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/akonadi/akonadi_test_searchplugin.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/designer/akonadi5widgets.so
+%{_datadir}/kdevappwizard/templates/akonadiresource.tar.bz2
+%{_datadir}/kdevappwizard/templates/akonadiserializer.tar.bz2
 %dir %{_datadir}/akonadi
 %dir %{_datadir}/akonadi/agents
 %{_datadir}/akonadi/agents/knutresource.desktop
