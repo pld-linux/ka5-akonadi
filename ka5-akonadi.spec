@@ -1,15 +1,15 @@
-%define		kdeappsver	19.04.1
+%define		kdeappsver	20.12.3
 %define		kfver		5.53.0
 %define		qtver		5.9.0
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	19.04.1
+Version:	20.12.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	2855d53243a9bae150537014abd5f6c6
+Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	728b1f7193ce05a5012ea8e8991b16fe
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -22,6 +22,7 @@ BuildRequires:	Qt5Xml-devel >= %{qtver}
 BuildRequires:	boost-devel >= 1.34.0
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gettext-devel
+BuildRequires:	ka5-kaccounts-integration-devel >= %{kdeappsver}
 BuildRequires:	kf5-extra-cmake-modules >= %{kfver}
 BuildRequires:	kf5-kcompletion-devel >= %{kfver}
 BuildRequires:	kf5-kconfig-devel >= %{kfver}
@@ -67,6 +68,15 @@ Header files for %{kaname} development.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe dla programistów używających %{kaname}.
 
+%package apparmor
+Summary:	Files for apparmor
+Group:		X11/Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description apparmor
+Files for apparmor.
+
+
 %prep
 %setup -q -n %{kaname}-%{version}
 
@@ -101,7 +111,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/akonadictl
 %attr(755,root,root) %{_bindir}/akonadiserver
 %attr(755,root,root) %{_bindir}/asapcat
-/etc/xdg/akonadi.categories
 %dir /etc/xdg/akonadi
 /etc/xdg/akonadi/mysql-global-mobile.conf
 /etc/xdg/akonadi/mysql-global.conf
@@ -111,7 +120,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml
 %{_datadir}/dbus-1/services/org.freedesktop.Akonadi.Control.service
 %{_datadir}/mime/packages/akonadi-mime.xml
-/etc/xdg/akonadi.renamecategories
 %attr(755,root,root) %{_bindir}/akonadi2xml
 %attr(755,root,root) %{_bindir}/akonadi_knut_resource
 %attr(755,root,root) %{_bindir}/akonadiselftest
@@ -126,7 +134,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libKF5AkonadiXml.so.*.*.*
 %dir %{_libdir}/qt5/plugins/akonadi
 %attr(755,root,root) %{_libdir}/qt5/plugins/akonadi/akonadi_test_searchplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/designer/akonadi5widgets.so
 %{_datadir}/kdevappwizard/templates/akonadiresource.tar.bz2
 %{_datadir}/kdevappwizard/templates/akonadiserializer.tar.bz2
 %dir %{_datadir}/akonadi
@@ -146,6 +153,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kf5/akonadi/kcfg2dbus.xsl
 %dir %{_datadir}/kf5/akonadi_knut_resource
 %{_datadir}/kf5/akonadi_knut_resource/knut-template.xml
+%{_datadir}/qlogging-categories5/akonadi.categories
+%{_datadir}/qlogging-categories5/akonadi.renamecategories
+%attr(755,root,root) %{_libdir}/qt5/plugins/designer/akonadiwidgets.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -166,3 +176,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/mkspecs/modules/qt_AkonadiCore.pri
 %{_libdir}/qt5/mkspecs/modules/qt_AkonadiWidgets.pri
 %{_libdir}/qt5/mkspecs/modules/qt_AkonadiXml.pri
+
+%files apparmor
+%defattr(644,root,root,755)
+/etc/apparmor.d/mariadbd_akonadi
+/etc/apparmor.d/mysqld_akonadi
+/etc/apparmor.d/postgresql_akonadi
+/etc/apparmor.d/usr.bin.akonadiserver
