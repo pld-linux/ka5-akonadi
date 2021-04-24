@@ -1,15 +1,15 @@
-%define		kdeappsver	20.12.3
+%define		kdeappsver	21.04.0
 %define		kfver		5.53.0
 %define		qtver		5.9.0
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	20.12.3
+Version:	21.04.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	728b1f7193ce05a5012ea8e8991b16fe
+# Source0-md5:	bf58f46d1a83c38495b83072e5034a7f
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/xdg/akonadi
 /etc/xdg/akonadi/mysql-global-mobile.conf
 /etc/xdg/akonadi/mysql-global.conf
-%attr(755,root,root) %ghost %{_libdir}/libKF5AkonadiPrivate.so.5
+%ghost %{_libdir}/libKF5AkonadiPrivate.so.5
 %attr(755,root,root) %{_libdir}/libKF5AkonadiPrivate.so.*.*.*
 %{_libdir}/qt5/plugins/sqldrivers/libqsqlite3.so
 %{_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml
@@ -124,13 +124,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/akonadi_knut_resource
 %attr(755,root,root) %{_bindir}/akonadiselftest
 %attr(755,root,root) %{_bindir}/akonaditest
-%attr(755,root,root) %ghost %{_libdir}/libKF5AkonadiAgentBase.so.5
+%ghost %{_libdir}/libKF5AkonadiAgentBase.so.5
 %attr(755,root,root) %{_libdir}/libKF5AkonadiAgentBase.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKF5AkonadiCore.so.5
+%ghost %{_libdir}/libKF5AkonadiCore.so.5
 %attr(755,root,root) %{_libdir}/libKF5AkonadiCore.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKF5AkonadiWidgets.so.5
+%ghost %{_libdir}/libKF5AkonadiWidgets.so.5
 %attr(755,root,root) %{_libdir}/libKF5AkonadiWidgets.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKF5AkonadiXml.so.5
+%ghost %{_libdir}/libKF5AkonadiXml.so.5
 %attr(755,root,root) %{_libdir}/libKF5AkonadiXml.so.*.*.*
 %dir %{_libdir}/qt5/plugins/akonadi
 %attr(755,root,root) %{_libdir}/qt5/plugins/akonadi/akonadi_test_searchplugin.so
@@ -167,7 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/KF5/AkonadiXml
 %{_includedir}/KF5/akonadi_version.h
 %{_libdir}/cmake/KF5Akonadi
-%attr(755,root,root) %{_libdir}/libKF5AkonadiPrivate.so
+%{_libdir}/libKF5AkonadiPrivate.so
 %{_libdir}/libKF5AkonadiAgentBase.so
 %{_libdir}/libKF5AkonadiCore.so
 %{_libdir}/libKF5AkonadiWidgets.so
