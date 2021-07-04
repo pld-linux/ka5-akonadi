@@ -56,6 +56,15 @@ Besides data storage, Akonadi has several other components including
 search, and a library (cache) for easy access and notification of data
 changes.
 
+%description -l pl.UTF-8
+Akonadi jest szkieletem zarządzania informacjami osobistymi (PIM) dla
+KDE. Będzie on funkcjonował jako rozszerzalny magazyn danych dla
+wszystkich aplikacji PIM.
+
+Oprócz magazynu danych, Akonadi ma wiele innych komponentów, między
+innymi przeszukiwanie i bibliotekę (buforowanie) dla łatwego dostępu i
+powiadomieniach o zmianach danych.
+
 %package devel
 Summary:	Header files for %{kaname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kaname}
