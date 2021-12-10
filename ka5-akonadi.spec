@@ -1,15 +1,15 @@
-%define		kdeappsver	21.08.3
+%define		kdeappsver	21.12.0
 %define		kfver		5.53.0
 %define		qtver		5.9.0
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	21.08.3
+Version:	21.12.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	4255fd706ecc4d88180d68024781df15
+# Source0-md5:	637643b54fa2c275aa3513d9a5ccf8d2
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -39,6 +39,7 @@ BuildRequires:	kf5-kitemviews-devel >= %{kfver}
 BuildRequires:	kf5-kwidgetsaddons-devel >= %{kfver}
 BuildRequires:	kf5-kwindowsystem-devel >= %{kfver}
 BuildRequires:	kf5-kxmlgui-devel >= %{kfver}
+BuildRequires:	libaccounts-qt5-devel >= 1.16
 BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
