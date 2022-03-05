@@ -5,7 +5,7 @@
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
 Version:	21.12.3
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
@@ -13,10 +13,12 @@ Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kana
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
+BuildRequires:	Qt5Designer-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
 BuildRequires:	Qt5Network-devel >= %{qtver}
 BuildRequires:	Qt5Sql-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
+BuildRequires:	Qt5UiTools-devel >= %{qtver}
 BuildRequires:	Qt5Widgets-devel >= %{qtver}
 BuildRequires:	Qt5Xml-devel >= %{qtver}
 BuildRequires:	boost-devel >= 1.34.0
