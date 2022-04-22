@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	21.12.3
+%define		kdeappsver	22.04.0
 %define		kfver		5.53.0
 %define		qtver		5.9.0
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	21.12.3
-Release:	2
+Version:	22.04.0
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	828725b09625c502a8bf71d4a873ede5
+# Source0-md5:	d64cdd91952451ea7fda6ab1acc3ce97
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -156,8 +156,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libKF5AkonadiXml.so.*.*.*
 %dir %{_libdir}/qt5/plugins/akonadi
 %attr(755,root,root) %{_libdir}/qt5/plugins/akonadi/akonadi_test_searchplugin.so
-%{_datadir}/kdevappwizard/templates/akonadiresource.tar.bz2
-%{_datadir}/kdevappwizard/templates/akonadiserializer.tar.bz2
 %dir %{_datadir}/akonadi
 %dir %{_datadir}/akonadi/agents
 %{_datadir}/akonadi/agents/knutresource.desktop
@@ -181,7 +179,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF5/akonadi
 %{_includedir}/KF5/Akonadi
 %{_includedir}/KF5/AkonadiAgentBase
 %{_includedir}/KF5/AkonadiCore
