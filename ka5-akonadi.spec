@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.04.3
+%define		kdeappsver	22.08.0
 %define		kfver		5.53.0
 %define		qtver		5.15.2
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	22.04.3
+Version:	22.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	846a11ccb0ca1a98257b33f940a7d2bc
+# Source0-md5:	32827cdafa3967ea9c2470f400bc0064
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -69,8 +69,8 @@ KDE. Będzie on funkcjonował jako rozszerzalny magazyn danych dla
 wszystkich aplikacji PIM.
 
 Oprócz magazynu danych, Akonadi ma wiele innych komponentów, między
-innymi przeszukiwanie i bibliotekę (buforowanie) dla łatwego dostępu i
-powiadomieniach o zmianach danych.
+innymi przeszukiwanie i bibliotekę (buforowanie) dla łatwego
+dostępu i powiadomieniach o zmianach danych.
 
 %package devel
 Summary:	Header files for %{kaname} development
@@ -154,8 +154,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libKF5AkonadiWidgets.so.*.*.*
 %ghost %{_libdir}/libKF5AkonadiXml.so.5
 %attr(755,root,root) %{_libdir}/libKF5AkonadiXml.so.*.*.*
-%dir %{_libdir}/qt5/plugins/akonadi
-%attr(755,root,root) %{_libdir}/qt5/plugins/akonadi/akonadi_test_searchplugin.so
 %dir %{_datadir}/akonadi
 %dir %{_datadir}/akonadi/agents
 %{_datadir}/akonadi/agents/knutresource.desktop
@@ -176,6 +174,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/qlogging-categories5/akonadi.categories
 %{_datadir}/qlogging-categories5/akonadi.renamecategories
 %attr(755,root,root) %{_libdir}/qt5/plugins/designer/akonadiwidgets.so
+%dir %{_libdir}/qt5/plugins/pim5
+%dir %{_libdir}/qt5/plugins/pim5/akonadi
+%attr(755,root,root) %{_libdir}/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -184,7 +185,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/KF5/AkonadiCore
 %{_includedir}/KF5/AkonadiWidgets
 %{_includedir}/KF5/AkonadiXml
-%{_includedir}/KF5/akonadi_version.h
 %{_libdir}/cmake/KF5Akonadi
 %{_libdir}/libKF5AkonadiPrivate.so
 %{_libdir}/libKF5AkonadiAgentBase.so
@@ -201,4 +201,4 @@ rm -rf $RPM_BUILD_ROOT
 /etc/apparmor.d/mariadbd_akonadi
 /etc/apparmor.d/mysqld_akonadi
 /etc/apparmor.d/postgresql_akonadi
-/etc/apparmor.d/usr.bin.akonadiserver
+/etc/apparmor.d%{_prefix}.bin.akonadiserver
