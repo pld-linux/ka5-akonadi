@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.12.3
+%define		kdeappsver	23.04.0
 %define		kfver		5.53.0
 %define		qtver		5.15.2
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	22.12.3
-Release:	2
+Version:	23.04.0
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	991ff07082424349f6014ef69eeb1642
+# Source0-md5:	a202cfa05bf3a933f35b4e4a35bc092b
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -137,8 +137,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/xdg/akonadi
 /etc/xdg/akonadi/mysql-global-mobile.conf
 /etc/xdg/akonadi/mysql-global.conf
-%ghost %{_libdir}/libKF5AkonadiPrivate.so.5
-%attr(755,root,root) %{_libdir}/libKF5AkonadiPrivate.so.*.*.*
 %{_libdir}/qt5/plugins/sqldrivers/libqsqlite3.so
 %{_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml
 %{_datadir}/dbus-1/services/org.freedesktop.Akonadi.Control.service
@@ -147,14 +145,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/akonadi_knut_resource
 %attr(755,root,root) %{_bindir}/akonadiselftest
 %attr(755,root,root) %{_bindir}/akonaditest
-%ghost %{_libdir}/libKF5AkonadiAgentBase.so.5
-%attr(755,root,root) %{_libdir}/libKF5AkonadiAgentBase.so.*.*.*
-%ghost %{_libdir}/libKF5AkonadiCore.so.5
-%attr(755,root,root) %{_libdir}/libKF5AkonadiCore.so.*.*.*
-%ghost %{_libdir}/libKF5AkonadiWidgets.so.5
-%attr(755,root,root) %{_libdir}/libKF5AkonadiWidgets.so.*.*.*
-%ghost %{_libdir}/libKF5AkonadiXml.so.5
-%attr(755,root,root) %{_libdir}/libKF5AkonadiXml.so.*.*.*
 %dir %{_datadir}/akonadi
 %dir %{_datadir}/akonadi/agents
 %{_datadir}/akonadi/agents/knutresource.desktop
@@ -174,11 +164,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kf5/akonadi_knut_resource/knut-template.xml
 %{_datadir}/qlogging-categories5/akonadi.categories
 %{_datadir}/qlogging-categories5/akonadi.renamecategories
-%attr(755,root,root) %{_libdir}/qt5/plugins/designer/akonadiwidgets.so
 %dir %{_libdir}/qt5/plugins/pim5
 %dir %{_libdir}/qt5/plugins/pim5/akonadi
 %attr(755,root,root) %{_libdir}/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
 %dir %{_libdir}/qt5/plugins/pim5/kontact
+%ghost %{_libdir}/libKPim5AkonadiAgentBase.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiAgentBase.so.5.23.0
+%ghost %{_libdir}/libKPim5AkonadiCore.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiCore.so.5.23.0
+%ghost %{_libdir}/libKPim5AkonadiPrivate.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiPrivate.so.5.23.0
+%ghost %{_libdir}/libKPim5AkonadiWidgets.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiWidgets.so.5.23.0
+%ghost %{_libdir}/libKPim5AkonadiXml.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiXml.so.5.23.0
+%attr(755,root,root) %{_libdir}/qt5/plugins/designer/akonadi5widgets.so
+
 # TODO subpackage
 %{_datadir}/kdevappwizard/templates/akonadiresource.tar.bz2
 %{_datadir}/kdevappwizard/templates/akonadiserializer.tar.bz2
@@ -186,16 +187,19 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/KF5/Akonadi
-%{_includedir}/KF5/AkonadiAgentBase
-%{_includedir}/KF5/AkonadiCore
-%{_includedir}/KF5/AkonadiWidgets
-%{_includedir}/KF5/AkonadiXml
+%dir %{_includedir}/KPim5
+%{_includedir}/KPim5/Akonadi
+%{_includedir}/KPim5/AkonadiAgentBase
+%{_includedir}/KPim5/AkonadiCore
+%{_includedir}/KPim5/AkonadiWidgets
+%{_includedir}/KPim5/AkonadiXml
 %{_libdir}/cmake/KF5Akonadi
-%{_libdir}/libKF5AkonadiPrivate.so
-%{_libdir}/libKF5AkonadiAgentBase.so
-%{_libdir}/libKF5AkonadiCore.so
-%{_libdir}/libKF5AkonadiWidgets.so
-%{_libdir}/libKF5AkonadiXml.so
+%{_libdir}/cmake/KPim5Akonadi
+%{_libdir}/libKPim5AkonadiAgentBase.so
+%{_libdir}/libKPim5AkonadiCore.so
+%{_libdir}/libKPim5AkonadiPrivate.so
+%{_libdir}/libKPim5AkonadiWidgets.so
+%{_libdir}/libKPim5AkonadiXml.so
 %{_libdir}/qt5/mkspecs/modules/qt_AkonadiAgentBase.pri
 %{_libdir}/qt5/mkspecs/modules/qt_AkonadiCore.pri
 %{_libdir}/qt5/mkspecs/modules/qt_AkonadiWidgets.pri
