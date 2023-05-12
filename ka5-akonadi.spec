@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	23.04.0
+%define		kdeappsver	23.04.1
 %define		kfver		5.53.0
 %define		qtver		5.15.2
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	23.04.0
+Version:	23.04.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	a202cfa05bf3a933f35b4e4a35bc092b
+# Source0-md5:	9e4460cbc87d99f8a064c53db5270b5f
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -169,15 +169,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
 %dir %{_libdir}/qt5/plugins/pim5/kontact
 %ghost %{_libdir}/libKPim5AkonadiAgentBase.so.5
-%attr(755,root,root) %{_libdir}/libKPim5AkonadiAgentBase.so.5.23.0
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiAgentBase.so.5.*.*
 %ghost %{_libdir}/libKPim5AkonadiCore.so.5
-%attr(755,root,root) %{_libdir}/libKPim5AkonadiCore.so.5.23.0
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiCore.so.5.*.*
 %ghost %{_libdir}/libKPim5AkonadiPrivate.so.5
-%attr(755,root,root) %{_libdir}/libKPim5AkonadiPrivate.so.5.23.0
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiPrivate.so.5.*.*
 %ghost %{_libdir}/libKPim5AkonadiWidgets.so.5
-%attr(755,root,root) %{_libdir}/libKPim5AkonadiWidgets.so.5.23.0
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiWidgets.so.5.*.*
 %ghost %{_libdir}/libKPim5AkonadiXml.so.5
-%attr(755,root,root) %{_libdir}/libKPim5AkonadiXml.so.5.23.0
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiXml.so.5.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/designer/akonadi5widgets.so
 
 # TODO subpackage
