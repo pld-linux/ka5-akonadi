@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	23.04.3
+%define		kdeappsver	23.08.0
 %define		kfver		5.53.0
 %define		qtver		5.15.2
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	23.04.3
+Version:	23.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	d8cf63db8345bd1de07d61554cd96a7c
+# Source0-md5:	4f9029ab5e3898ebc9fd548d0b797af9
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -25,7 +25,7 @@ BuildRequires:	Qt5UiTools-devel >= %{qtver}
 BuildRequires:	Qt5Widgets-devel >= %{qtver}
 BuildRequires:	Qt5Xml-devel >= %{qtver}
 BuildRequires:	boost-devel >= 1.34.0
-BuildRequires:	cmake >= 2.8.12
+BuildRequires:	cmake >= 3.20
 BuildRequires:	gettext-devel
 BuildRequires:	ka5-kaccounts-integration-devel >= %{kdeappsver}
 BuildRequires:	kf5-extra-cmake-modules >= %{kfver}
@@ -97,17 +97,15 @@ Files for apparmor.
 %setup -q -n %{kaname}-%{version}
 
 %build
-install -d build
-cd build
-%cmake -G Ninja \
+%cmake -B build \
+	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DHTML_INSTALL_DIR=%{_kdedocdir} \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-	..
-%ninja_build
+	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+%ninja_build -C build
 
 %if %{with tests}
-ctest
+ctest --test-dir build
 %endif
 
 
@@ -137,7 +135,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir /etc/xdg/akonadi
 /etc/xdg/akonadi/mysql-global-mobile.conf
 /etc/xdg/akonadi/mysql-global.conf
-%{_libdir}/qt5/plugins/sqldrivers/libqsqlite3.so
 %{_datadir}/dbus-1/interfaces/org.freedesktop.Akonadi.*.xml
 %{_datadir}/dbus-1/services/org.freedesktop.Akonadi.Control.service
 %{_datadir}/mime/packages/akonadi-mime.xml
