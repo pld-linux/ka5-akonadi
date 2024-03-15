@@ -1,51 +1,52 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	24.01.95
+%define		kdeappsver	23.08.4
 %define		kfver		5.53.0
 %define		qtver		5.15.2
 %define		kaname		akonadi
 Summary:	Akonadi - The PIM Storage Service
 Name:		ka5-%{kaname}
-Version:	24.01.95
-Release:	0.1
+Version:	23.08.4
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/unstable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	f4f5b1dba17c1c64a1e81cd0b00caf94
+Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	a5105254ae50976aa5d02edc6fc1f5f3
 URL:		http://www.kde.org/
-BuildRequires:	Qt6Core-devel >= %{qtver}
-BuildRequires:	Qt6DBus-devel >= %{qtver}
-BuildRequires:	Qt6Designer-devel >= %{qtver}
-BuildRequires:	Qt6Gui-devel >= 5.11.1
-BuildRequires:	Qt6Network-devel >= %{qtver}
-BuildRequires:	Qt6Sql-devel >= %{qtver}
-BuildRequires:	Qt6Test-devel >= %{qtver}
-BuildRequires:	Qt6UiTools-devel >= %{qtver}
-BuildRequires:	Qt6Widgets-devel >= %{qtver}
-BuildRequires:	Qt6Xml-devel >= %{qtver}
+BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5DBus-devel >= %{qtver}
+BuildRequires:	Qt5Designer-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel >= 5.11.1
+BuildRequires:	Qt5Network-devel >= %{qtver}
+BuildRequires:	Qt5Sql-devel >= %{qtver}
+BuildRequires:	Qt5Test-devel >= %{qtver}
+BuildRequires:	Qt5UiTools-devel >= %{qtver}
+BuildRequires:	Qt5Widgets-devel >= %{qtver}
+BuildRequires:	Qt5Xml-devel >= %{qtver}
 BuildRequires:	boost-devel >= 1.34.0
 BuildRequires:	cmake >= 3.20
 BuildRequires:	gettext-devel
 BuildRequires:	ka5-kaccounts-integration-devel >= %{kdeappsver}
-BuildRequires:	kf6-extra-cmake-modules >= %{kfver}
-BuildRequires:	kf6-kcompletion-devel >= %{kfver}
-BuildRequires:	kf6-kconfig-devel >= %{kfver}
-BuildRequires:	kf6-kconfigwidgets-devel >= %{kfver}
-BuildRequires:	kf6-kcoreaddons-devel >= %{kfver}
-BuildRequires:	kf6-kcrash-devel >= %{kfver}
-BuildRequires:	kf6-kdbusaddons-devel >= %{kfver}
-BuildRequires:	kf6-ki18n-devel >= %{kfver}
-BuildRequires:	kf6-kiconthemes-devel >= %{kfver}
-BuildRequires:	kf6-kio-devel >= %{kfver}
-BuildRequires:	kf6-kitemmodels-devel >= %{kfver}
-BuildRequires:	kf6-kitemviews-devel >= %{kfver}
-BuildRequires:	kf6-kwidgetsaddons-devel >= %{kfver}
-BuildRequires:	kf6-kwindowsystem-devel >= %{kfver}
-BuildRequires:	kf6-kxmlgui-devel >= %{kfver}
-BuildRequires:	libaccounts-qt6-devel >= 1.16
+BuildRequires:	kf5-extra-cmake-modules >= %{kfver}
+BuildRequires:	kf5-kcompletion-devel >= %{kfver}
+BuildRequires:	kf5-kconfig-devel >= %{kfver}
+BuildRequires:	kf5-kconfigwidgets-devel >= %{kfver}
+BuildRequires:	kf5-kcoreaddons-devel >= %{kfver}
+BuildRequires:	kf5-kcrash-devel >= %{kfver}
+BuildRequires:	kf5-kdbusaddons-devel >= %{kfver}
+BuildRequires:	kf5-kdesignerplugin-devel >= %{kfver}
+BuildRequires:	kf5-ki18n-devel >= %{kfver}
+BuildRequires:	kf5-kiconthemes-devel >= %{kfver}
+BuildRequires:	kf5-kio-devel >= %{kfver}
+BuildRequires:	kf5-kitemmodels-devel >= %{kfver}
+BuildRequires:	kf5-kitemviews-devel >= %{kfver}
+BuildRequires:	kf5-kwidgetsaddons-devel >= %{kfver}
+BuildRequires:	kf5-kwindowsystem-devel >= %{kfver}
+BuildRequires:	kf5-kxmlgui-devel >= %{kfver}
+BuildRequires:	libaccounts-qt5-devel >= 1.16
 BuildRequires:	ninja
-BuildRequires:	qt6-build >= %{qtver}
+BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
@@ -68,8 +69,8 @@ KDE. Będzie on funkcjonował jako rozszerzalny magazyn danych dla
 wszystkich aplikacji PIM.
 
 Oprócz magazynu danych, Akonadi ma wiele innych komponentów, między
-innymi przeszukiwanie i bibliotekę (buforowanie) dla łatwego dostępu i
-powiadomieniach o zmianach danych.
+innymi przeszukiwanie i bibliotekę (buforowanie) dla łatwego
+dostępu i powiadomieniach o zmianach danych.
 
 %package devel
 Summary:	Header files for %{kaname} development
@@ -111,10 +112,10 @@ ctest --test-dir build
 %install
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
-#install -d $RPM_BUILD_ROOT%{_includedir}/KF6/Akonadi
-#install -d $RPM_BUILD_ROOT%{_libdir}/qt6/plugins/pim5/kontact
-#install -d $RPM_BUILD_ROOT%{_libdir}/qt6/plugins/pim5/kcms
-install -d $RPM_BUILD_ROOT%{_libdir}/qt6/qml/org/kde/akonadi
+install -d $RPM_BUILD_ROOT%{_includedir}/KF5/Akonadi
+install -d $RPM_BUILD_ROOT%{_libdir}/qt5/plugins/pim5/kontact
+install -d $RPM_BUILD_ROOT%{_libdir}/qt5/plugins/pim5/kcms
+install -d $RPM_BUILD_ROOT%{_libdir}/qt5/qml/org/kde/akonadi
 
 %find_lang %{kaname} --all-name --with-kde
 
@@ -155,25 +156,30 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/48x48/apps/akonadi.png
 %{_iconsdir}/hicolor/64x64/apps/akonadi.png
 %{_iconsdir}/hicolor/scalable/apps/akonadi.svgz
-%dir %{_libdir}/qt6/qml/org/kde/akonadi
-%attr(755,root,root) %{_bindir}/akonadi-db-migrator
-%attr(755,root,root) %{_libdir}/libKPim6AkonadiAgentBase.so.*.*
-%ghost %{_libdir}/libKPim6AkonadiAgentBase.so.6
-%attr(755,root,root) %{_libdir}/libKPim6AkonadiCore.so.*.*
-%ghost %{_libdir}/libKPim6AkonadiCore.so.6
-%attr(755,root,root) %{_libdir}/libKPim6AkonadiPrivate.so.*.*
-%ghost %{_libdir}/libKPim6AkonadiPrivate.so.6
-%attr(755,root,root) %{_libdir}/libKPim6AkonadiWidgets.so.*.*
-%ghost %{_libdir}/libKPim6AkonadiWidgets.so.6
-%attr(755,root,root) %{_libdir}/libKPim6AkonadiXml.so.*.*
-%ghost %{_libdir}/libKPim6AkonadiXml.so.6
-%attr(755,root,root) %{_libdir}/qt6/plugins/designer/akonadi6widgets.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/pim6/akonadi/akonadi_test_searchplugin.so
-%{_datadir}/kf6/akonadi/akonadi-xml.xsd
-%{_datadir}/kf6/akonadi/kcfg2dbus.xsl
-%{_datadir}/kf6/akonadi_knut_resource/knut-template.xml
-%{_datadir}/qlogging-categories6/akonadi.categories
-%{_datadir}/qlogging-categories6/akonadi.renamecategories
+%dir %{_datadir}/kf5/akonadi
+%{_datadir}/kf5/akonadi/akonadi-xml.xsd
+%{_datadir}/kf5/akonadi/kcfg2dbus.xsl
+%dir %{_datadir}/kf5/akonadi_knut_resource
+%{_datadir}/kf5/akonadi_knut_resource/knut-template.xml
+%{_datadir}/qlogging-categories5/akonadi.categories
+%{_datadir}/qlogging-categories5/akonadi.renamecategories
+%dir %{_libdir}/qt5/plugins/pim5
+%dir %{_libdir}/qt5/plugins/pim5/akonadi
+%attr(755,root,root) %{_libdir}/qt5/plugins/pim5/akonadi/akonadi_test_searchplugin.so
+%dir %{_libdir}/qt5/plugins/pim5/kontact
+%ghost %{_libdir}/libKPim5AkonadiAgentBase.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiAgentBase.so.5.*.*
+%ghost %{_libdir}/libKPim5AkonadiCore.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiCore.so.5.*.*
+%ghost %{_libdir}/libKPim5AkonadiPrivate.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiPrivate.so.5.*.*
+%ghost %{_libdir}/libKPim5AkonadiWidgets.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiWidgets.so.5.*.*
+%ghost %{_libdir}/libKPim5AkonadiXml.so.5
+%attr(755,root,root) %{_libdir}/libKPim5AkonadiXml.so.5.*.*
+%attr(755,root,root) %{_libdir}/qt5/plugins/designer/akonadi5widgets.so
+%dir %{_libdir}/qt5/plugins/pim5/kcms
+%dir %{_libdir}/qt5/qml/org/kde/akonadi
 
 # TODO subpackage
 %{_datadir}/kdevappwizard/templates/akonadiresource.tar.bz2
@@ -181,19 +187,24 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%dir %{_includedir}/KPim6
-%{_includedir}/KPim6/Akonadi
-%{_includedir}/KPim6/AkonadiAgentBase
-%{_includedir}/KPim6/AkonadiCore
-%{_includedir}/KPim6/AkonadiWidgets
-%{_includedir}/KPim6/AkonadiXml
-%{_libdir}/cmake/KPim6Akonadi
-%{_libdir}/libKPim6AkonadiAgentBase.so
-%{_libdir}/libKPim6AkonadiCore.so
-%{_libdir}/libKPim6AkonadiPrivate.so
-%{_libdir}/libKPim6AkonadiWidgets.so
-%{_libdir}/libKPim6AkonadiXml.so
-
+%{_includedir}/KF5/Akonadi
+%dir %{_includedir}/KPim5
+%{_includedir}/KPim5/Akonadi
+%{_includedir}/KPim5/AkonadiAgentBase
+%{_includedir}/KPim5/AkonadiCore
+%{_includedir}/KPim5/AkonadiWidgets
+%{_includedir}/KPim5/AkonadiXml
+%{_libdir}/cmake/KF5Akonadi
+%{_libdir}/cmake/KPim5Akonadi
+%{_libdir}/libKPim5AkonadiAgentBase.so
+%{_libdir}/libKPim5AkonadiCore.so
+%{_libdir}/libKPim5AkonadiPrivate.so
+%{_libdir}/libKPim5AkonadiWidgets.so
+%{_libdir}/libKPim5AkonadiXml.so
+%{_libdir}/qt5/mkspecs/modules/qt_AkonadiAgentBase.pri
+%{_libdir}/qt5/mkspecs/modules/qt_AkonadiCore.pri
+%{_libdir}/qt5/mkspecs/modules/qt_AkonadiWidgets.pri
+%{_libdir}/qt5/mkspecs/modules/qt_AkonadiXml.pri
 
 %files apparmor
 %defattr(644,root,root,755)
